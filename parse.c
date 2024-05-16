@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/05/11 19:54:33 by jihyjeon         ###   ########.fr       */
+/*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
+/*   Updated: 2024/05/11 19:54:54 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-
-typedef struct s_mapinfo
+int	get_map(int fd, t_mapinfo *map)
 {
-	long long	width;
-	long long	height;
-	char		**map;
-}	t_mapinfo;
-
-int	get_map(int fd, t_mapinfo *map);
-
-#endif
+	init_map();
+}
