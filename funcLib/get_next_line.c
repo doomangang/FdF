@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon < jihyjeon@student.42seoul.kr>    +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:07:31 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/01/30 16:13:18 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:50:24 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

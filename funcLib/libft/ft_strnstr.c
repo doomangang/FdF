@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jihyjeon < jihyjeon@student.42seoul.kr>    +#+  +:+       +#+        */
+/*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:51:32 by jihyjeon          #+#    #+#             */
-/*   Updated: 2023/11/07 17:48:02 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:46:21 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft/libft.h"
 
 size_t	ft_min(size_t a, size_t b)
 {

@@ -6,52 +6,37 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/02 00:09:19 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:51:59 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fdf.h"
 
-char	*get_next_line(int fd);
+char	*read_map(int fd);
 
-int	**init_map(char *file)
+char	*get_map(int fd, t_mapinfo *map)
 {
-	int			fd;
-	t_mapinfo	*map_info;
-	int w;
-	int h;
+	char	*map_arr;
 
-	fd = open(file, O_RDONLY);
-	map_info->width = ft_strlen(get_next_line(fd));
-	close(fd);
-	map_info->height = count_line(file);
-	map_info->map = create_map(map_info->width, map_info->height);
-	w = 0;
-	h = 0;
-	while(h != map_info->height)
-	{
-		while(w != map_info->width)
-		{
-			map_info->map[h][w] = 0;
-		}
-	}
+	map_arr = read_map(fd);
+	// map->map = ft_split(map_arr, '\n');
+	return (map_arr);
 }
 
-int	get_map(char *file, t_mapinfo *map)
+char	*read_map(int fd)
 {
-	char	*line;
-	int		fd;
+	int		idx;
+	int		status;
+	char	buf[BUF_SIZE];
+	char	*num_arr;
 
-	fd = open(file, O_RDONLY);
-	line = get_next_line(fd);
-	while (line)
-	{
-		ft_atoi(ft_split(line, ' '));
-		line = get_next_line(fd);
-	}
-}
-
-int	count_line(char *file)
-{
-
+	status = 1;
+	idx = 0;
+	status = read(fd, buf, BUF_SIZE);
+	idx += status;
+	if (status >= BUF_SIZE)
+		num_arr = ft_strjoin(&buf, read_map(fd));
+	else
+		num_arr = ft_strdup(&buf);
+	return (num_arr);
 }

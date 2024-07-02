@@ -1,6 +1,6 @@
 NAME 	= libft.a
 INC		= includes
-HEADER	= libft.h
+HEADER	= ../libft/libft.h
 LIBC	= ar rcs
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
