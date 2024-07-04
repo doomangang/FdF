@@ -6,16 +6,14 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:43:18 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/04 19:26:58 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:42:50 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 
-void	print_error(char *arr, char *str)
+void	print_error(char *str)
 {
-	if (arr)
-		free(arr);
 	perror(str);
 	exit(EXIT_FAILURE);
 }
@@ -60,7 +58,7 @@ char	*c_arr(const char *str, char c)
 	len = s_len(str, c);
 	new = (char *)malloc(sizeof(char) * (len + 1));
 	if (!new)
-		print_error(str, "malloc error");
+		print_error("malloc error");
 	i = 0;
 	while (i < len)
 	{
@@ -80,7 +78,7 @@ char	**ft_split(char const *s, char c)
 	nos = s_cnt(s, c);
 	arr = (char **)malloc(sizeof(char *) * (nos + 1));
 	if (!(arr))
-		print_error(0, "malloc error");
+		print_error("malloc error");
 	i = 0;
 	while (*s != 0)
 	{

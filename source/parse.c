@@ -6,18 +6,16 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/04 20:06:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:07:16 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fdf.h"
 
-char	*get_map(char *file, t_mapinfo *map)
+void	get_map(char *file, t_mapinfo *map)
 {
 	char	*map_arr;
 	char	**tmp;
-	char	*num;
-	int		idx;
 	int		fd;
 
 	fd = open(file, O_RDONLY);
@@ -34,7 +32,6 @@ char	*get_map(char *file, t_mapinfo *map)
 	fill_map(tmp, map);
 	free(tmp);
 	close(fd);
-	return (map_arr);
 }
 
 char	*read_map(int fd, t_mapinfo *map)
@@ -51,15 +48,18 @@ char	*read_map(int fd, t_mapinfo *map)
 	if (status >= BUF_SIZE - 1)
 	{
 		tmp = read_map(fd, map);
-		num_arr = ft_strjoin(&buf, tmp);
+		num_arr = ft_strjoin(buf, tmp);
 		free(tmp);
 	}
 	else
-		num_arr = ft_strdup(&buf);
+    {
+        buf[status] = 0;
+        num_arr = ft_strdup(buf);
+    }
 	return (num_arr);
 }
 
-char	**fill_map(char **arr, t_mapinfo *map)
+void	fill_map(char **arr, t_mapinfo *map)
 {
 	char	**num_arr;
 	int		row;

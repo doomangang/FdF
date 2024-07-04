@@ -1,14 +1,15 @@
 NAME	= fdf
 SRCS 	= fdf.c source/parse.c funcLib/libft/ft_split.c funcLib/libft/ft_strjoin.c\
  funcLib/libft/ft_strlen.c funcLib/libft/ft_strdup.c funcLib/libft/ft_strlcpy.c\
- funcLib/libft/ft_memcpy.c
+ funcLib/libft/ft_memcpy.c funcLib/libft/ft_atoi.c funcLib/libft/ft_strncmp.c\
+ funcLib/libft/ft_isdigit.c
 
 OBJS 	= ${SRCS:.c=.o}
 
 HEADER	= fdf.h
 
 CC				= cc
-CFLAGS			= -Wall -Wextra
+CFLAGS			= -Wall -Wextra -Werror -g
 RM				= rm -f
 
 all: ${NAME}

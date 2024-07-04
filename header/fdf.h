@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/04 20:02:00 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:33:44 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ typedef struct s_mapinfo
 	int		**map;
 }	t_mapinfo;
 
-char	*get_map(char *file, t_mapinfo *map);
+int		check_file(char *file);
+void	get_map(char *file, t_mapinfo *map);
 char	*read_map(int fd, t_mapinfo *map);
-char	**fill_map(char **arr, t_mapinfo *map);
+void	fill_map(char **arr, t_mapinfo *map);
 int		count_height(char **arr);
 void	free_map(t_mapinfo *map, char *str);
 
