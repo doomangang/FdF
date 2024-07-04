@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:43:11 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/02 16:46:21 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:28:37 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!(new))
-		return (0);
+		print_error(0, "malloc error");
 	tmp = new;
 	while (*s1)
 	{

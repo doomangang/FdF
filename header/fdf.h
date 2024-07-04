@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/02 16:54:02 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:02:00 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,20 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "../funcLib/libft/libft.h"
-#include "../funcLib/libft/ft_split.c"
-#include "../funcLib/libft/ft_strjoin.c"
-#include "../funcLib/libft/ft_strlen.c"
-#include "../funcLib/libft/ft_strdup.c"
-#include "../funcLib/libft/ft_strlcpy.c"
-#include "../funcLib/libft/ft_memcpy.c"
-
 
 # define BUF_SIZE 10000
 
 typedef struct s_mapinfo
 {
-	long long	width;
-	long long	height;
-	char		**map;
+	int		width;
+	int		height;
+	int		**map;
 }	t_mapinfo;
 
+char	*get_map(char *file, t_mapinfo *map);
+char	*read_map(int fd, t_mapinfo *map);
+char	**fill_map(char **arr, t_mapinfo *map);
+int		count_height(char **arr);
+void	free_map(t_mapinfo *map, char *str);
 
 #endif

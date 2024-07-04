@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 13:53:07 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/02 16:46:21 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:28:15 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *src)
 	len = ft_strlen(src);
 	ptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!(ptr))
-		return (0);
+		print_error(0, "malloc error");
 	ft_strlcpy(ptr, src, len + 1);
 	return (ptr);
 }
