@@ -6,22 +6,23 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/04 22:07:16 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:59:13 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fdf.h"
 
-void	get_map(char *file, t_mapinfo *map)
+void	get_map(int fd, t_mapinfo *map)
 {
 	char	*map_arr;
 	char	**tmp;
-	int		fd;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0 || read(fd, NULL, 0) == -1)
-		free_map(map, "file error");
 	map_arr = read_map(fd, map);
+	if (!map_arr)
+	{
+		free(map);
+		free_map(0, "empty map");
+	}
 	tmp = ft_split(map_arr, '\n');
 	free(map_arr);
 	map->height = count_height(tmp);
@@ -31,7 +32,6 @@ void	get_map(char *file, t_mapinfo *map)
 		free_map(map, "malloc failed");
 	fill_map(tmp, map);
 	free(tmp);
-	close(fd);
 }
 
 char	*read_map(int fd, t_mapinfo *map)
@@ -51,11 +51,13 @@ char	*read_map(int fd, t_mapinfo *map)
 		num_arr = ft_strjoin(buf, tmp);
 		free(tmp);
 	}
+	else if (!status)
+		return (0);
 	else
-    {
-        buf[status] = 0;
-        num_arr = ft_strdup(buf);
-    }
+	{
+		buf[status] = 0;
+		num_arr = ft_strdup(buf);
+	}
 	return (num_arr);
 }
 
