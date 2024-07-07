@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:42:36 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/07 22:05:18 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:15:22 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,6 @@ void draw_line(t_imagemeta *img, int x0, int y0, int x1, int y1, int color) {
         e2 = err;
         if (e2 > -dx) { err -= dy; x0 += sx; }
         if (e2 < dy) { err += dx; y0 += sy; }
-    }
-}
-
-void draw_line_smooth(t_imagemeta *img, double x1, double y1, double x2, double y2, int color) {
-    int steps = fmax(fabs(x2 - x1), fabs(y2 - y1)); // 더 큰 거리 기준으로 세분화
-    double dx = (x2 - x1) / steps;
-    double dy = (y2 - y1) / steps;
-    
-    double x = x1;
-    double y = y1;
-    
-    for (int i = 0; i <= steps; i++) {
-        put_pixel(img, round(x), round(y), color);
-        x += dx;
-        y += dy;
     }
 }
 
@@ -88,20 +73,20 @@ void    draw(t_imagemeta *img, t_mapinfo *map)
 
 	calculate_scale_and_offset(map, &scale, &offset_x, &offset_y);
     for (int i = 0; i < map->width; i++) {
-    for (int j = 0; j < map->height; j++) {
-        double x1 = map->map[i][j].x * scale + offset_x;
-        double y1 = map->map[i][j].y * scale + offset_y;
-        if (j < map->height - 1) {
-            double x2 = map->map[i][j + 1].x * scale + offset_x;
-            double y2 = map->map[i][j + 1].y * scale + offset_y;
-            draw_line_smooth(img, x1, y1, x2, y2, 0x00FFFFFF); // 선형 보간 함수 호출
-        }
-        if (i < map->width - 1) {
-            double x2 = map->map[i + 1][j].x * scale + offset_x;
-            double y2 = map->map[i + 1][j].y * scale + offset_y;
-            draw_line_smooth(img, x1, y1, x2, y2, 0x00FFFFFF); // 선형 보간 함수 호출
+        for (int j = 0; j < map->height; j++) {
+            double x1 = map->map[i][j].x * scale + offset_x;
+            double y1 = map->map[i][j].y * scale + offset_y;
+            if (j < map->height - 1) {
+                double x2 = map->map[i][j + 1].x * scale + offset_x;
+                double y2 = map->map[i][j + 1].y * scale + offset_y;
+                draw_line(img, round(x1), round(y1), round(x2), round(y2), 0x00FFFFFF);
+            }
+            if (i < map->width - 1) {
+                double x2 = map->map[i + 1][j].x * scale + offset_x;
+                double y2 = map->map[i + 1][j].y * scale + offset_y;
+                draw_line(img, round(x1), round(y1), round(x2), round(y2), 0x00FFFFFF);
+            }
         }
     }
-}
 
 }
