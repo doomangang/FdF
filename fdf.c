@@ -6,18 +6,17 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/05 16:24:10 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:16:16 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/fdf.h"
 
-
 int	main(int argc, char **argv)
 {
 	char		*file;	
 	t_mapinfo	*map;
-	int         fd;
+	int			fd;
 
 	if (argc == 2)
 	{
@@ -27,14 +26,14 @@ int	main(int argc, char **argv)
 			free_map(0, "file error");
 		map = (t_mapinfo *)malloc(sizeof(t_mapinfo));
 		if (!map)
-			free_map(map, "malloc failed");
+			free_map(0, "malloc failed");
 		get_map(fd, map);
 		close(fd);
 		window();
 	}
 	else
 	{
-		perror("no fdf file input");
+		perror("no apt file input");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -53,11 +52,24 @@ int	check_file(char *file)
 
 void	free_map(t_mapinfo *map, char *str)
 {
+    int	row;
+
+	row = 0;
 	if (map)
 	{
 		if (map->map)
+        {
+            while (row != map->width)
+			{
+				free(map->map[row]);
+				map->map[row] = 0;
+				row++;
+			}
 			free(map->map);
+			map->map = 0;
+        }
 		free(map);
+        map = 0;
 	}
 	perror(str);
 	exit(EXIT_FAILURE);

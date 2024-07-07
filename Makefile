@@ -1,6 +1,6 @@
 NAME		= fdf
 
-SRCS 		= fdf.c source/parse.c source/draw.c source/window.c \
+SRCS 		= fdf.c source/parse.c source/draw.c source/projection.c source/window.c\
  funcLib/libft/ft_split.c funcLib/libft/ft_strjoin.c\
  funcLib/libft/ft_strlen.c funcLib/libft/ft_strdup.c funcLib/libft/ft_strlcpy.c\
  funcLib/libft/ft_memcpy.c funcLib/libft/ft_atoi.c funcLib/libft/ft_strncmp.c\

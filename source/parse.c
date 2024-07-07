@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/05 15:59:13 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:16:03 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	get_map(int fd, t_mapinfo *map)
 {
 	char	*map_arr;
 	char	**tmp;
+	int		row;
 
 	map_arr = read_map(fd, map);
 	if (!map_arr)
@@ -27,11 +28,17 @@ void	get_map(int fd, t_mapinfo *map)
 	free(map_arr);
 	map->height = count_height(tmp);
 	map->width = (int)s_cnt(tmp[0], ' ');
-	map->map = (int **)malloc(sizeof(int *) * map->height);
+	map->map = (t_coord **)malloc(sizeof(t_coord *) * map->width);
 	if (!map->map)
 		free_map(map, "malloc failed");
+	row = -1;
+	while (++row != map->width)
+	{
+		map->map[row] = (t_coord *)malloc(sizeof(t_coord) * map->height);
+		if (!map->map[row])
+			free_map(map, "malloc failed");
+	}
 	fill_map(tmp, map);
-	free(tmp);
 }
 
 char	*read_map(int fd, t_mapinfo *map)
@@ -66,24 +73,28 @@ void	fill_map(char **arr, t_mapinfo *map)
 	char	**num_arr;
 	int		row;
 	int		col;
+	int		t_row;
 
 	row = 0;
 	while (arr[row])
 	{
-		map->map[row] = (int *)malloc(sizeof(int) * map->width);
-		if (!map->map[row])
-			free_map(map, "malloc failed");
 		num_arr = ft_split(arr[row], ' ');
 		if (count_height(num_arr) != map->width)
 			free_map(map, "map error");
+		t_row = map->height - 1 - row;
 		col = 0;
 		while (col != map->width)
 		{
-			map->map[row][col] = ft_atoi(num_arr[col]);
+			map->map[col][t_row].x = col;
+			map->map[col][t_row].y = t_row;
+			map->map[col][t_row].z = ft_atoi(num_arr[col]);
 			col++;
 		}
+		free(arr[row]);
 		row++;
 	}
+	free(arr);
+	projection(map);
 }
 
 int	count_height(char **arr)

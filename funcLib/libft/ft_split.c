@@ -29,7 +29,7 @@ size_t	s_cnt(const char *str, char chr)
 			str++;
 		if (*str)
 			num++;
-		while (*str && !(*str == chr))
+		while (*str && *str != chr)
 			str++;
 	}
 	return (num);
