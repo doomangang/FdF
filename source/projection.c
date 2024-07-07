@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:55:40 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/07 17:49:51 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/07 21:41:24 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	calculate(t_coord *point)
 	x = point->x;
 	y = point->y;
 	z = point->z;
-	point->x = (x - y) / sqrt(2);
-	point->y = (x - 2 * z + y) / sqrt(6);
+	point->x = (x + y) / sqrt(2);
+	point->y = (x - 2 * z - y) / sqrt(6);
 	point->z = 0;
 }
 

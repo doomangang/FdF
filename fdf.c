@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/07 20:16:16 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/07 21:21:50 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 			free_map(0, "malloc failed");
 		get_map(fd, map);
 		close(fd);
-		window();
+		window(map);
 	}
 	else
 	{
