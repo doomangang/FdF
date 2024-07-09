@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:07:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/09 22:39:19 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/10 02:07:17 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,42 @@ void	draw_line(t_imagemeta *img, t_windata *win, t_coord p1, t_coord p2)
 {
 	t_lineinfo	l;
 
-	l.dx = fabs(p2.x - p1.x);
-	l.dy = fabs(p2.y - p1.y);
-	l.sx = p1.x < p2.x ? 1 : -1;
-	l.sy = p1.y < p2.y ? 1 : -1;
-	l.err = (l.dx > l.dy ? l.dx : -l.dy) / 2;
+	init_lineinfo(&l, p1, p2);
 	while (1)
 	{
 		put_pixel(img, win, p1.x, p1.y);
-		if (p1.x == p2.x && p1.y == p2.y) break;
+		if (p1.x == p2.x && p1.y == p2.y) 
+			break ;
 		l.e2 = l.err;
-		if (l.e2 > -l.dx) { l.err -= l.dy; p1.x += l.sx; }
-		if (l.e2 < l.dy) { l.err += l.dx; p1.y += l.sy; }
+		if (l.e2 > -l.dx)
+		{
+			l.err -= l.dy;
+			p1.x += l.sx;
+		}
+		if (l.e2 < l.dy)
+		{
+			l.err += l.dx;
+			p1.y += l.sy;
+		}
 	}
+}
+
+void	init_lineinfo(t_lineinfo *l, t_coord p1, t_coord p2)
+{
+	l->dx = fabs(p2.x - p1.x);
+	l->dy = fabs(p2.y - p1.y);
+	if (p1.x < p2.x)
+		l->sx = 1;
+	else
+		l->sx = -1;
+	if (p1.y < p2.y)
+		l->sy = 1;
+	else
+		l->sy = -1;
+	if (l->dx > l->dy)
+		l->err = l->dx / 2;
+	else
+		l->err = -1 * l->dy / 2;
 }
 
 void	put_pixel(t_imagemeta *img, t_windata *win, int x, int y)

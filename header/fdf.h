@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/09 22:46:02 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/10 02:38:21 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	max_point(t_winfit *fit, t_mapinfo *map);
 void	draw(t_imagemeta *img, t_windata *win, t_mapinfo *map, t_winfit *f);
 void	enlarge(t_coord *src, t_coord *dst, t_winfit *f);
 void	draw_line(t_imagemeta *img, t_windata *win, t_coord p1, t_coord p2);
+void	init_lineinfo(t_lineinfo *l, t_coord p1, t_coord p2);
 void	put_pixel(t_imagemeta *img, t_windata *win, int x, int y);
 
 #endif
