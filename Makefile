@@ -18,7 +18,7 @@ LIBFT			= $(LIBFT_DIR)libft.a
 LIBFT_DIR		= funcLib/libft/
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=undefined
 GL_LINK			= -lmlx -lm -L$(MINILIBX_DIR) -framework OpenGL -framework AppKit
 FT_LINK			= -lft -L$(LIBFT_DIR)
 INCLUDES		= -I$(HEADER_DIR) -I$(MINILIBX_DIR) -I$(LIBFT_DIR)

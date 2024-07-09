@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:07:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/09 20:32:54 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:39:19 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	draw(t_imagemeta *img, t_windata *win, t_mapinfo *map, t_winfit *f)
 
 void	enlarge(t_coord *src, t_coord *dst, t_winfit *f)
 {
-	dst->x = round(src->x * f->scale + f->off_x);
-	dst->y = round((src->y + f->max_y) * f->scale + f->off_y);
+	dst->x = round((src->x - f->min_x) * f->scale + f->off_x);
+	dst->y = round((src->y - f->min_y) * f->scale + f->off_y);
 }
 
 void	draw_line(t_imagemeta *img, t_windata *win, t_coord p1, t_coord p2)

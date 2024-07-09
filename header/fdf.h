@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/09 20:01:30 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:46:02 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_winfit
 	double	min_y;
 	int		scale_x;
 	int		scale_y;
+	int		pad;
 	t_coord	p1;
 	t_coord	p2;
 }			t_winfit;
@@ -86,6 +87,7 @@ char	*read_map(int fd, t_mapinfo *map);
 void	fill_map(char **arr, t_mapinfo *map);
 int		count_height(char **arr);
 void	free_map(t_mapinfo *map, char *str);
+void	set_them_free(t_mapinfo *map);
 int		window(t_mapinfo *map);
 void	projection(t_mapinfo *map);
 void	scale_offset(t_winfit *fit, t_windata *win);
