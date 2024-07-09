@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/09 15:52:45 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:01:30 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ typedef struct s_imagemeta
 
 typedef struct s_winfit
 {
-	double	scale;
-	double	off_x;
-	double	off_y;
+	int		scale;
+	int		off_x;
+	int		off_y;
 	double	max_x;
 	double	max_y;
-	double	scale_x;
-	double	scale_y;
+	double	min_x;
+	double	min_y;
+	int		scale_x;
+	int		scale_y;
 	t_coord	p1;
 	t_coord	p2;
 }			t_winfit;
@@ -86,10 +88,11 @@ int		count_height(char **arr);
 void	free_map(t_mapinfo *map, char *str);
 int		window(t_mapinfo *map);
 void	projection(t_mapinfo *map);
-void	scale_offset(t_mapinfo *map, t_winfit *fit);
-void    draw(t_imagemeta *img, t_mapinfo *map, t_winfit *f);
+void	scale_offset(t_winfit *fit, t_windata *win);
+void	max_point(t_winfit *fit, t_mapinfo *map);
+void	draw(t_imagemeta *img, t_windata *win, t_mapinfo *map, t_winfit *f);
 void	enlarge(t_coord *src, t_coord *dst, t_winfit *f);
-void	draw_line(t_imagemeta *img, t_coord p1, t_coord p2);
-void	put_pixel(t_imagemeta *img, int x, int y, int color);
+void	draw_line(t_imagemeta *img, t_windata *win, t_coord p1, t_coord p2);
+void	put_pixel(t_imagemeta *img, t_windata *win, int x, int y);
 
 #endif

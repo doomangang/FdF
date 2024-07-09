@@ -6,13 +6,13 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:07:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/09 15:55:59 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:32:54 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fdf.h"
 
-void	draw(t_imagemeta *img, t_mapinfo *map, t_winfit *f)
+void	draw(t_imagemeta *img, t_windata *win, t_mapinfo *map, t_winfit *f)
 {
 	int			i;
 	int			j;
@@ -27,12 +27,12 @@ void	draw(t_imagemeta *img, t_mapinfo *map, t_winfit *f)
 			if (j < map->height - 1)
 			{
 				enlarge(&map->map[i][j + 1], &f->p2, f);
-				draw_line(img, f->p1, f->p2);
+				draw_line(img, win, f->p1, f->p2);
 			}
 			if (i < map->width - 1)
 			{
 				enlarge(&map->map[i + 1][j], &f->p2, f);
-				draw_line(img, f->p1, f->p2);
+				draw_line(img, win, f->p1, f->p2);
 			}
 			j++;
 		}
@@ -43,10 +43,10 @@ void	draw(t_imagemeta *img, t_mapinfo *map, t_winfit *f)
 void	enlarge(t_coord *src, t_coord *dst, t_winfit *f)
 {
 	dst->x = round(src->x * f->scale + f->off_x);
-	dst->y = round(src->y * f->scale + f->off_y);
+	dst->y = round((src->y + f->max_y) * f->scale + f->off_y);
 }
 
-void	draw_line(t_imagemeta *img, t_coord p1, t_coord p2)
+void	draw_line(t_imagemeta *img, t_windata *win, t_coord p1, t_coord p2)
 {
 	t_lineinfo	l;
 
@@ -57,7 +57,7 @@ void	draw_line(t_imagemeta *img, t_coord p1, t_coord p2)
 	l.err = (l.dx > l.dy ? l.dx : -l.dy) / 2;
 	while (1)
 	{
-		put_pixel(img, p1.x, p1.y, WH);
+		put_pixel(img, win, p1.x, p1.y);
 		if (p1.x == p2.x && p1.y == p2.y) break;
 		l.e2 = l.err;
 		if (l.e2 > -l.dx) { l.err -= l.dy; p1.x += l.sx; }
@@ -65,13 +65,13 @@ void	draw_line(t_imagemeta *img, t_coord p1, t_coord p2)
 	}
 }
 
-void	put_pixel(t_imagemeta *img, int x, int y, int color)
+void	put_pixel(t_imagemeta *img, t_windata *win, int x, int y)
 {
 	char	*dst;
 
-	if (x >= 0 && x < 1920 && y >= 0 && y < 1024)
+	if (x >= 0 && x < win->w && y >= 0 && y < win->h)
 	{
 		dst = img->addr + (y * img->line_lgth + x * (img->bpp / 8));
-		*(unsigned int *)dst = color;
+		*(unsigned int *)dst = WH;
 	}
 }
