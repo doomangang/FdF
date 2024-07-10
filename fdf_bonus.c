@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/10 21:07:25 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/10 21:03:54 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/fdf.h"
+#include "header/fdf_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		get_map(fd, map);
 		close(fd);
 		window(map);
+		system("leaks fdf");
 	}
 	else
 	{

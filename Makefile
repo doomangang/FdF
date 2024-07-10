@@ -5,10 +5,17 @@ SRCS 			= fdf.c\
 				source/draw.c\
 				source/projection.c\
 				source/window.c
+SRCS_B			= fdf_bonus.c\
+				bonus/parse.c\
+				bonus/draw.c\
+				bonus/projection.c\
+				bonus/window.c
 
 OBJS 			= $(SRCS:.c=.o)
+OBJS_B			= ${SRCS_B:.c=.o}
 
 HEADER			= $(HEADER_DIR)fdf.h
+HEADER_B		= $(HEADER_DIR)fdf_bonus.h
 HEADER_DIR		= header/
 
 MINILIBX_DIR	= minilibx_mms_20191025_beta/
@@ -25,14 +32,26 @@ INCLUDES		= -I$(HEADER_DIR) -I$(MINILIBX_DIR) -I$(LIBFT_DIR)
 
 RM				= rm -f
 
+ifdef WITH_BONUS
+	OBJ_SWITCH	= ${OBJS_B}
+	H_SWITCH	= $(HEADER_B)
+	NAME		= fdf_bonus
+else
+	OBJ_SWITCH = ${OBJS}
+	H_SWITCH	= $(HEADER)
+endif
+
 all: $(NAME)
 
-%.o: %.c $(HEADER)
+bonus:
+	${MAKE} WITH_BONUS=1 all
+
+%.o: %.c $(H_SWITCH)
 	@$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
 
-$(NAME): $(LIBFT) $(MINILIBX_DYLIB) $(OBJS)
+$(NAME): $(LIBFT) $(MINILIBX_DYLIB) $(OBJ_SWITCH)
 	@cp $(MINILIBX_DYLIB) .
-	@$(CC) $(CFLAGS) $(FT_LINK) $(GL_LINK) $(INCLUDES) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(FT_LINK) $(GL_LINK) $(INCLUDES) $(OBJ_SWITCH) -o $(NAME)
 	@echo "$(NAME): object file and $(NAME) created"
 
 $(LIBFT):
@@ -45,7 +64,7 @@ $(MINILIBX_DYLIB):
 clean:
 	@$(MAKE) -sC $(MINILIBX_DIR) clean
 	@$(MAKE) -sC $(LIBFT_DIR) clean
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(OBJS_B)
 	@echo "$(NAME): objects deleted"
 
 fclean: clean
@@ -56,4 +75,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
