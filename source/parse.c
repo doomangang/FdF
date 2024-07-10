@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/07 20:16:03 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:59:03 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	fill_map(char **arr, t_mapinfo *map)
 	int		col;
 	int		t_row;
 
+	init_map(map);
 	row = 0;
 	while (arr[row])
 	{
@@ -85,15 +86,13 @@ void	fill_map(char **arr, t_mapinfo *map)
 		col = 0;
 		while (col != map->width)
 		{
-			map->map[col][t_row].x = col;
-			map->map[col][t_row].y = t_row;
 			map->map[col][t_row].z = ft_atoi(num_arr[col]);
 			col++;
 		}
-		free(arr[row]);
+		set_them_free(num_arr);
 		row++;
 	}
-	free(arr);
+	set_them_free(arr);
 	projection(map);
 }
 
@@ -110,4 +109,23 @@ int	count_height(char **arr)
 		cnt++;
 	}
 	return (cnt);
+}
+
+void	init_map(t_mapinfo *map)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row != map->width)
+	{
+		col = 0;
+		while (col != map->height)
+		{
+			map->map[row][col].x = row;
+			map->map[row][col].y = col;
+			col++;
+		}
+		row++;
+	}
 }

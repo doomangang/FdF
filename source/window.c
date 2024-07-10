@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:20:58 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/09 22:56:44 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:39:11 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exit_hook(t_mapinfo *map)
 {
-	set_them_free(map);
+	free_map(map, 0);
 	system("leaks fdf");
 	exit(0);
 	return (0);
@@ -24,7 +24,7 @@ int	key_hook(int keycode, t_mapinfo *map)
 {
 	if (keycode == 53)
 	{
-		set_them_free(map);
+		free_map(map, 0);
 		system("leaks fdf");
 		exit(0);
 	}
