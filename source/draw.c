@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:07:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/10 02:07:17 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:43:01 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_line(t_imagemeta *img, t_windata *win, t_coord p1, t_coord p2)
 	while (1)
 	{
 		put_pixel(img, win, p1.x, p1.y);
-		if (p1.x == p2.x && p1.y == p2.y) 
+		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
 		l.e2 = l.err;
 		if (l.e2 > -l.dx)
