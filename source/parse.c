@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/10 19:59:03 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:56:03 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_map(int fd, t_mapinfo *map)
 	if (!map_arr)
 	{
 		free(map);
-		free_map(0, "empty map");
+		handle_empty();
 	}
 	tmp = ft_split(map_arr, '\n');
 	free(map_arr);

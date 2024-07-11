@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/10 21:07:25 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:56:45 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,3 +97,10 @@ void	set_them_free(char **arr)
 	free(arr);
 	arr = 0;
 }
+
+void	handle_empty()
+{
+	fprintf(stderr, "Error: empty map\n");
+    exit(EXIT_FAILURE);
+}
+
