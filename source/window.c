@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:20:58 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/11 16:25:42 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:33:25 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	scale_offset(t_winfit *fit, t_windata *win)
 
 	width = fit->max_x - fit->min_x;
 	height = fit->max_y - fit->min_y;
-	fprintf(stdout, "w : %d, h : %d\n", width, height);
 	win->w = 2100;
 	win->h = 1200;
 	fit->pad = 30;
