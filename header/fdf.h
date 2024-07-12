@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/11 16:37:33 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:14:30 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ typedef struct s_lineinfo
 }		t_lineinfo;
 
 int		check_file(char *file);
-void	handle_empty(void);
+void	handle_error(char *str);
 void	get_map(int fd, t_mapinfo *map);
 char	*read_map(int fd, t_mapinfo *map);
 void	fill_map(char **arr, t_mapinfo *map);
 int		count_height(char **arr);
 void	init_map(t_mapinfo *map);
-void	free_map(t_mapinfo *map, char *str);
+void	free_map(t_mapinfo *map, int i, char *str);
 void	set_them_free(char **map);
 int		window(t_mapinfo *map);
 void	projection(t_mapinfo *map);

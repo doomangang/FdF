@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:07:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/11 15:43:01 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:29:22 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	draw(t_imagemeta *img, t_windata *win, t_mapinfo *map, t_winfit *f)
 		while (j < map->height)
 		{
 			enlarge(&map->map[i][j], &f->p1, f);
+			put_pixel(img, win, f->p1.x, f->p1.y);
 			if (j < map->height - 1)
 			{
 				enlarge(&map->map[i][j + 1], &f->p2, f);
