@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:20:58 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/12 15:29:43 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/13 21:01:46 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	key_hook(int keycode)
 	return (0);
 }
 
-int	window(t_mapinfo *map)
+void	window(t_mapinfo *map)
 {
 	t_windata	w_data;
 	t_imagemeta	img;
@@ -42,7 +42,6 @@ int	window(t_mapinfo *map)
 	mlx_key_hook(w_data.win, key_hook, map);
 	mlx_hook(w_data.win, 17, 0, exit_hook, map);
 	mlx_loop(w_data.mlx);
-	return (0);
 }
 
 void	scale_offset(t_winfit *fit, t_windata *win)

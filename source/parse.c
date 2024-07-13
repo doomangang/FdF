@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:34:30 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/12 14:32:14 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/13 21:00:47 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void	fill_map(char **arr, t_mapinfo *map)
 			map->map[col][t_row].z = ft_atoi(num_arr[col]);
 			col++;
 		}
-		set_them_free(num_arr);
+		free_arr(num_arr);
 		row++;
 	}
-	set_them_free(arr);
+	free_arr(arr);
 	projection(map);
 }
 

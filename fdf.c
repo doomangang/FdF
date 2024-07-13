@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/12 14:31:50 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/13 21:00:47 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_file(char *file)
 	len = ft_strlen(parsed[h - 1]);
 	if (h == 2 && (!ft_strncmp(parsed[h - 1], "fdf", 3)) && len == 3)
 		flag = 1;
-	set_them_free(parsed);
+	free_arr(parsed);
 	return (flag);
 }
 
@@ -84,7 +84,7 @@ void	free_map(t_mapinfo *map, int i, char *str)
 	}
 }
 
-void	set_them_free(char **arr)
+void	free_arr(char **arr)
 {
 	int	row;
 	int	col;

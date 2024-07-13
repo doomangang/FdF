@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:06:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/12 14:14:30 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/13 21:01:54 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	fill_map(char **arr, t_mapinfo *map);
 int		count_height(char **arr);
 void	init_map(t_mapinfo *map);
 void	free_map(t_mapinfo *map, int i, char *str);
-void	set_them_free(char **map);
-int		window(t_mapinfo *map);
+void	free_arr(char **map);
+void	window(t_mapinfo *map);
 void	projection(t_mapinfo *map);
 void	scale_offset(t_winfit *fit, t_windata *win);
 void	max_point(t_winfit *fit, t_mapinfo *map);
