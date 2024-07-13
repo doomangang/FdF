@@ -6,7 +6,7 @@
 /*   By: jihyjeon <jihyjeon@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:07:12 by jihyjeon          #+#    #+#             */
-/*   Updated: 2024/07/12 15:29:22 by jihyjeon         ###   ########.fr       */
+/*   Updated: 2024/07/13 19:47:35 by jihyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	draw_line(t_imagemeta *img, t_windata *win, t_coord p1, t_coord p2)
 		put_pixel(img, win, p1.x, p1.y);
 		if (p1.x == p2.x && p1.y == p2.y)
 			break ;
-		l.e2 = l.err;
-		if (l.e2 > -l.dx)
+		l.e2 = 2 * l.err;
+		if (l.e2 > -l.dy)
 		{
 			l.err -= l.dy;
 			p1.x += l.sx;
 		}
-		if (l.e2 < l.dy)
+		if (l.e2 < l.dx)
 		{
 			l.err += l.dx;
 			p1.y += l.sy;
@@ -83,10 +83,7 @@ void	init_lineinfo(t_lineinfo *l, t_coord p1, t_coord p2)
 		l->sy = 1;
 	else
 		l->sy = -1;
-	if (l->dx > l->dy)
-		l->err = l->dx / 2;
-	else
-		l->err = -1 * l->dy / 2;
+	l->err = l->dx - l->dy;
 }
 
 void	put_pixel(t_imagemeta *img, t_windata *win, int x, int y)
